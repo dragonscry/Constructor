@@ -50,7 +50,7 @@ extension BasketWithItems {
     func itemToItemModel() {
         
         for item in itemsToBasket {
-            itemModels.append(ItemModel(id: item.itemID ?? "", name: item.name ?? ""))
+            itemModels.append(ItemModel(id: item.itemID ?? "", name: item.name ?? "", price: item.price))
         }
     }
 }
@@ -64,5 +64,6 @@ extension BasketWithItems {
 struct ItemModel: Codable, Hashable, Identifiable {
     let id: String
     let name: String
+    let price: Double
     var count = "0"
 }

@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BuyStockEntity" representedClassName="BuyStockEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="buyStockId" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="itemCounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemStockCountEntity" inverseName="buyStock" inverseEntity="ItemStockCountEntity"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectEntity" inverseName="buyStock" inverseEntity="ProjectEntity"/>
+    </entity>
     <entity name="ItemCountEntity" representedClassName="ItemCountEntity" syncable="YES" codeGenerationType="class">
         <attribute name="count" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="idItem" optional="YES" attributeType="String"/>
@@ -14,6 +21,16 @@
         <attribute name="storageCount" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="items" inverseEntity="ProductEntity"/>
         <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectEntity" inverseName="items" inverseEntity="ProjectEntity"/>
+    </entity>
+    <entity name="ItemStockCountEntity" representedClassName="ItemStockCountEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="count" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="itemId" optional="YES" attributeType="String"/>
+        <relationship name="buyStock" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BuyStockEntity" inverseName="itemCounts" inverseEntity="BuyStockEntity"/>
+    </entity>
+    <entity name="ProductCountOrderEntity" representedClassName="ProductCountOrderEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="count" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="productId" optional="YES" attributeType="String"/>
+        <relationship name="saleOrder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SaleOrderEntity" inverseName="productCounts" inverseEntity="SaleOrderEntity"/>
     </entity>
     <entity name="ProductEntity" representedClassName="ProductEntity" syncable="YES" codeGenerationType="class">
         <attribute name="isEditable" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
@@ -31,7 +48,16 @@
         <attribute name="isSelected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="projectID" optional="YES" attributeType="String"/>
+        <relationship name="buyStock" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BuyStockEntity" inverseName="project" inverseEntity="BuyStockEntity"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ItemEntity" inverseName="project" inverseEntity="ItemEntity"/>
         <relationship name="products" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductEntity" inverseName="projects" inverseEntity="ProductEntity"/>
+        <relationship name="saleOrder" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SaleOrderEntity" inverseName="project" inverseEntity="SaleOrderEntity"/>
+    </entity>
+    <entity name="SaleOrderEntity" representedClassName="SaleOrderEntity" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="price" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="saleStockId" optional="YES" attributeType="String"/>
+        <relationship name="productCounts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ProductCountOrderEntity" inverseName="saleOrder" inverseEntity="ProductCountOrderEntity"/>
+        <relationship name="project" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ProjectEntity" inverseName="saleOrder" inverseEntity="ProjectEntity"/>
     </entity>
 </model>
