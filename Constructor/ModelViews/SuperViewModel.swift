@@ -13,12 +13,15 @@ class SuperViewModel: ObservableObject {
     private let projectsData: ProjectsDataManager = ProjectsDataManager()
     private let productsData: ProductsDataManager = ProductsDataManager()
     private let itemsData: ItemsDataManager = ItemsDataManager()
+    private let buySaleData: SaleBuyManager = SaleBuyManager()
     
     private var cansellables = Set<AnyCancellable>()
     
     @Published var projects: [ProjectEntity] = []
     @Published var products: [ProductEntity] = []
     @Published var items: [ItemEntity] = []
+    @Published var buys: [BuyStockEntity] = []
+    @Published var orders: [SaleOrderEntity] = []
     
     @Published var searchItems = ""
     @Published var searchProducts = ""
@@ -55,6 +58,23 @@ class SuperViewModel: ObservableObject {
                 self?.items = items
             }
             .store(in: &cansellables)
+        
+        buySaleData.$buyStocks
+            .combineLatest(projectsData.$projects)
+            .map(filterBuyStock)
+            .sink { [weak self] buyStocks in
+                self?.buys = buyStocks
+            }
+            .store(in: &cansellables)
+        
+        buySaleData.$saleOrders
+            .combineLatest(projectsData.$projects)
+            .map(filterSaleOrder)
+            .sink { [weak self] saleOrders in
+                self?.orders = saleOrders
+            }
+            .store(in: &cansellables)
+        
         
         $searchItems
             .combineLatest(itemsData.$items)
@@ -219,6 +239,40 @@ class SuperViewModel: ObservableObject {
             projectProducts.contains(product)
         }
         
+    }
+    
+    //MARK: Buy Sale entities
+    
+    func addBuyStock(itemModels: [ItemModel], project: ProjectEntity?) {
+        buySaleData.addBuyStock(itemModels: itemModels, project: project)
+    }
+    
+    func addSaleOrder(productModels: [ProductModel], project: ProjectEntity?) {
+        buySaleData.addSaleOrder(productModels: productModels, project: project)
+    }
+    
+    private func filterBuyStock(buyStock: [BuyStockEntity], projects: [ProjectEntity]) -> [BuyStockEntity] {
+        guard let project = projects.first(where: {$0.isSelected}) else {return [BuyStockEntity]()}
+        
+        guard let projectBuyStocks = project.buyStock?.allObjects as? [BuyStockEntity] else {return [BuyStockEntity]()}
+        
+        return buyStock.filter { buyStock in
+            projectBuyStocks.contains(buyStock)
+        }
+    }
+    
+    private func filterSaleOrder(saleOrder: [SaleOrderEntity], projects: [ProjectEntity]) -> [SaleOrderEntity] {
+        guard let project = projects.first(where: {$0.isSelected}) else {return [SaleOrderEntity]()}
+        
+        guard let projectSaleOrders = project.saleOrder?.allObjects as? [SaleOrderEntity] else {return [SaleOrderEntity]()}
+        
+        return saleOrder.filter { saleOrder in
+            projectSaleOrders.contains(saleOrder)
+        }
+    }
+    
+    func saveBuyOrders() {
+        buySaleData.save()
     }
     
 }

@@ -43,7 +43,13 @@ struct StockView: View {
                     } label: {
                         basket
                     }
-
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink {
+                        BuyStocksView()
+                    } label: {
+                        folder
+                    }
                 }
             }
         }
@@ -79,5 +85,14 @@ extension StockView {
             
         }
         .frame(width: 30, height: 30)
+    }
+    
+    var folder: some View {
+        ZStack {
+            Image(systemName: "folder")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 30, height: 30)
+        }
     }
 }
