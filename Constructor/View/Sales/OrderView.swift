@@ -42,5 +42,6 @@ struct OrderView_Previews: PreviewProvider {
 struct ProductModel : Codable, Hashable, Identifiable {
     let id: String
     let name: String
+    let price: Double
     var count = "0"
 }

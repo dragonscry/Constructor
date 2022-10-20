@@ -49,10 +49,16 @@ class SaleBuyManager: ObservableObject {
         newBuyStock.date = Date.now
         newBuyStock.price = 0
         for itemModel in itemModels {
+            let newItemCountStock = ItemStockCountEntity(context: manager.context)
+            newItemCountStock.count = Double(itemModel.count) ?? 0
+            newItemCountStock.itemId = itemModel.id
             newBuyStock.price += (Double(itemModel.count) ?? 0) * itemModel.price
+            newBuyStock.addToItemCounts(newItemCountStock)
         }
         
         project.addToBuyStock(newBuyStock)
+        
+        save()
         
         // TODO ADD ITEM COUNT
     }
@@ -67,7 +73,18 @@ class SaleBuyManager: ObservableObject {
         newSaleOrder.date = Date.now
         newSaleOrder.saleStockId = UUID().uuidString
         newSaleOrder.price = 0
-        //TODO ADD COUNT PRODUCT
+        for productModel in productModels {
+            let newProductCount = ProductCountOrderEntity(context: manager.context)
+            newProductCount.count = Double(productModel.count) ?? 0.0
+            newProductCount.productId = productModel.id
+            newSaleOrder.addToProductCounts(newProductCount)
+            
+            newSaleOrder.price += productModel.price * (Double(productModel.count) ?? 0.0)
+        }
+        
+        project.addToSaleOrder(newSaleOrder)
+        
+        save()
     }
     
     
