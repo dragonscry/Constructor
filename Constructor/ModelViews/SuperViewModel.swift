@@ -145,6 +145,10 @@ class SuperViewModel: ObservableObject {
         projectsData.ZAKUPKA(items: items, project: projectsData.selectedProject)
     }
     
+    func PRODAZHA(products: [ProductModel]) {
+        projectsData.PRODAZHA(products: products, project: projectsData.selectedProject)
+    }
+    
     func saveProject(){
         projectsData.save()
     }

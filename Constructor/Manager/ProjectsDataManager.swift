@@ -107,17 +107,30 @@ class ProjectsDataManager: ObservableObject {
         }
     }
     
+    // to buy new items
     func ZAKUPKA(items: [ItemModel], project: ProjectEntity?) {
         guard let project = project else {return}
         
-        guard let projectItems = project.items?.allObjects as? [ItemEntity] else {return}
-        
-        for model in items {
-            guard let item = projectItems.first(where: {$0.itemID == model.id}) else {return}
-            project.budget -= item.price * (Double(model.count) ?? 0)
+//        guard let projectItems = project.items?.allObjects as? [ItemEntity] else {return}
+//
+//        for model in items {
+//            guard let item = projectItems.first(where: {$0.itemID == model.id}) else {return}
+//            project.budget -= item.price * (Double(model.count) ?? 0)
+//        }
+        for item in items {
+            project.budget -= item.price * (Double(item.count) ?? 0)
         }
         
         save()
+    }
+    
+    // to sale products
+    func PRODAZHA(products: [ProductModel], project: ProjectEntity?) {
+        guard let project = project else {return}
+        
+        for product in products {
+            project.budget += product.price * (Double(product.count) ?? 0)
+        }
     }
     
     func save() {

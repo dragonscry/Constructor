@@ -60,7 +60,6 @@ class SaleBuyManager: ObservableObject {
         
         save()
         
-        // TODO ADD ITEM COUNT
     }
     
    // func for creating sale order entity
