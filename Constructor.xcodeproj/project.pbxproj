@@ -30,6 +30,7 @@
 		9A841CE028F725AA00A0FDC0 /* OrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A841CDF28F725AA00A0FDC0 /* OrderView.swift */; };
 		9ABA24D128BD35AF00E21A33 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABA24D028BD35AF00E21A33 /* SearchView.swift */; };
 		9ABA24D628BFC31B00E21A33 /* SuperViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABA24D528BFC31B00E21A33 /* SuperViewModel.swift */; };
+		9AC86541291301CC00257111 /* ProductsForOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC86540291301CC00257111 /* ProductsForOrderView.swift */; };
 		9ADB47CA29001AD80001AD4C /* SaleBuyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB47C929001AD80001AD4C /* SaleBuyManager.swift */; };
 		9ADB47CC2901A5BA0001AD4C /* BuyStocksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADB47CB2901A5BA0001AD4C /* BuyStocksView.swift */; };
 		9AE4FC59287F3A3A003EB3E8 /* AddProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE4FC58287F3A3A003EB3E8 /* AddProjectView.swift */; };
@@ -66,6 +67,7 @@
 		9A841CDF28F725AA00A0FDC0 /* OrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderView.swift; sourceTree = "<group>"; };
 		9ABA24D028BD35AF00E21A33 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		9ABA24D528BFC31B00E21A33 /* SuperViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuperViewModel.swift; sourceTree = "<group>"; };
+		9AC86540291301CC00257111 /* ProductsForOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsForOrderView.swift; sourceTree = "<group>"; };
 		9ADB47C929001AD80001AD4C /* SaleBuyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleBuyManager.swift; sourceTree = "<group>"; };
 		9ADB47CB2901A5BA0001AD4C /* BuyStocksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuyStocksView.swift; sourceTree = "<group>"; };
 		9AE4FC58287F3A3A003EB3E8 /* AddProjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectView.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 			children = (
 				9A841CDD28F724DA00A0FDC0 /* SalesView.swift */,
 				9A841CDF28F725AA00A0FDC0 /* OrderView.swift */,
+				9AC86540291301CC00257111 /* ProductsForOrderView.swift */,
 			);
 			path = Sales;
 			sourceTree = "<group>";
@@ -327,6 +330,7 @@
 				9AE4FC612882F3C2003EB3E8 /* ItemsDataManager.swift in Sources */,
 				9ABA24D128BD35AF00E21A33 /* SearchView.swift in Sources */,
 				9AE4FC632882F3D4003EB3E8 /* ProductsDataManager.swift in Sources */,
+				9AC86541291301CC00257111 /* ProductsForOrderView.swift in Sources */,
 				9ADB47CA29001AD80001AD4C /* SaleBuyManager.swift in Sources */,
 				9AE4FC5B287F3A4A003EB3E8 /* ProjectListView.swift in Sources */,
 				9A841CDE28F724DA00A0FDC0 /* SalesView.swift in Sources */,
@@ -475,6 +479,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -504,6 +509,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

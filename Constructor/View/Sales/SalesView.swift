@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct SalesView: View {
+    
+    @EnvironmentObject var superVM: SuperViewModel
+    
+    
     var body: some View {
         NavigationView {
             List{

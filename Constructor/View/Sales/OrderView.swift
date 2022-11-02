@@ -9,12 +9,22 @@ import SwiftUI
 
 struct OrderView: View {
     
+    @EnvironmentObject var superVM: SuperViewModel
+    
+    @State var productsInOrder = [ProductModel]()
+    
     @State private var isShowingProducts: Bool = false
     
     var body: some View {
-        NavigationView {
+        VStack {
             List {
-                
+                ForEach(productsInOrder) { order in
+                    HStack {
+                        Text(order.name)
+                        Spacer()
+                        Text(order.count)
+                    }
+                }
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle("Order")
@@ -22,7 +32,7 @@ struct OrderView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Image(systemName: "cart.badge.plus")
                         .sheet(isPresented: $isShowingProducts) {
-                            Text("Order")
+                            ProductsForOrderView(products: $productsInOrder)
                         }
                         .onTapGesture {
                             isShowingProducts.toggle()
