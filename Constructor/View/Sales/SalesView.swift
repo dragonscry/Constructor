@@ -15,7 +15,12 @@ struct SalesView: View {
     var body: some View {
         NavigationView {
             List{
-                
+                ForEach(superVM.orders){ order in
+                    HStack {
+                        Text(order.saleStockId ?? "")
+                        Text("\(order.price)")
+                    }
+                }
             }
             .navigationTitle("Sales")
             .toolbar {

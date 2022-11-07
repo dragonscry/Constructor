@@ -12,6 +12,7 @@ struct OrderView: View {
     @EnvironmentObject var superVM: SuperViewModel
     
     @State var productsInOrder = [ProductModel]()
+    @Environment(\.dismiss) var dismiss
     
     @State private var isShowingProducts: Bool = false
     
@@ -39,6 +40,14 @@ struct OrderView: View {
                         }
                 }
             }
+            Button {
+                superVM.PRODAZHA(products: productsInOrder)
+                superVM.addSaleOrder(productModels: productsInOrder, project: superVM.selectedProject)
+                dismiss()
+            } label: {
+                Text("Save")
+            }
+
         }
     }
 }
