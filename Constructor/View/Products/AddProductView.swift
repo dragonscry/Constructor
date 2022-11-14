@@ -61,12 +61,12 @@ extension AddProductView {
             Button {
                 
                 if !price.isEmpty {
-                    superVM.addProduct(name: name, price: price, project: superVM.selectedProject)
+                    superVM.addProduct(name: name, price: price, project: superVM.selectedProject!)
                 }
                 else if items.isEmpty {
-                    superVM.addProduct(name: name, project: superVM.selectedProject)
+                    superVM.addProduct(name: name, project: superVM.selectedProject!)
                 } else if !items.isEmpty {
-                    superVM.addProduct(name: name, items: items, project: superVM.selectedProject)
+                    superVM.addProduct(name: name, items: items, project: superVM.selectedProject!)
                 }
                 presentationMode.wrappedValue.dismiss()
             } label: {

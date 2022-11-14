@@ -72,7 +72,7 @@ extension AddItemView {
     var saveButton: some View {
         
         Button {
-            superVM.addItem(name: name, price: Double(price) ?? 0, description: description, dimension: dimension, project: superVM.selectedProject)
+            superVM.addItem(name: name, price: Double(price) ?? 0, description: description, dimension: dimension, project: superVM.selectedProject!)
             superVM.saveItem()
             presentationMode.wrappedValue.dismiss()
         } label: {

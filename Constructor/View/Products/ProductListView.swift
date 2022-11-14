@@ -15,7 +15,7 @@ struct ProductListView: View {
     @State var selectedProduct: ProductEntity? = nil
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             ZStack {
                 VStack {
                     SearchView(searchText: $superVM.searchProducts)
@@ -49,15 +49,15 @@ struct ProductListView: View {
                     }
                 }
             }
-            .background(
-                NavigationLink(isActive: $showDetailView, destination: {
-                    if let selectedProduct = selectedProduct {
-                        ProductDetailsView(product: selectedProduct)
-                    }
-                }, label: {
-                    EmptyView()
-                })
-            )
+//            .background(
+//                NavigationLink(isActive: $showDetailView, destination: {
+//                    if let selectedProduct = selectedProduct {
+//                        ProductDetailsView(product: selectedProduct)
+//                    }
+//                }, label: {
+//                    EmptyView()
+//                })
+//            )
         }
     }
 }
@@ -73,13 +73,17 @@ extension ProductListView {
     var productList: some View {
         List {
             ForEach(superVM.products) { product in
-                HStack{
-                    Text("\(product.name ?? "Unnamed Product")")
+                NavigationLink(value: product) {
+                    HStack{
+                        Text("\(product.name ?? "Unnamed Product")")
+                    }
                 }
-                
-                .onTapGesture {
-                    selectProduct(product: product)
-                }
+//                .onTapGesture {
+//                    selectProduct(product: product)
+//                }
+                .navigationDestination(for: ProductEntity.self, destination: { product in
+                    ProductDetailsView(product: product)
+                })
                 .swipeActions(edge: .trailing) {
                     Button(role: .destructive) {
                         superVM.deleteProduct(product: product)

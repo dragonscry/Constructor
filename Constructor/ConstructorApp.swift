@@ -11,7 +11,7 @@ import SwiftUI
 struct ConstructorApp: App {
     
 //    @StateObject var projectsVM: ProjectsDataManager = ProjectsDataManager()
-    @StateObject var superVM: SuperViewModel = SuperViewModel()
+      @StateObject var superVM: SuperViewModel = SuperViewModel()
 //    @StateObject var itemsVM: ItemsDataManager = ItemsDataManager()
 //    @StateObject var productsVM: ProductsDataManager = ProductsDataManager()
     

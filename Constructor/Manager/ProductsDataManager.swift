@@ -127,8 +127,6 @@ class ProductsDataManager: ObservableObject {
         project.addToProducts(newProduct)
         
         save()
-        
-        
     }
     
     //add item to product

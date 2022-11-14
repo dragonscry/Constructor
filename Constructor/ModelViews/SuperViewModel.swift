@@ -26,7 +26,7 @@ class SuperViewModel: ObservableObject {
     @Published var searchItems = ""
     @Published var searchProducts = ""
     
-    var selectedProject: ProjectEntity = ProjectEntity()
+    var selectedProject: ProjectEntity?
     
     init() {
         addSubscribers()
