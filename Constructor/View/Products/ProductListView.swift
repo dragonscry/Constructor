@@ -73,10 +73,13 @@ extension ProductListView {
     var productList: some View {
         List {
             ForEach(superVM.products) { product in
-                NavigationLink(value: product) {
+                ZStack(alignment: .leading) {
                     HStack{
                         Text("\(product.name ?? "Unnamed Product")")
                     }
+                    NavigationLink(value: product) {
+                    }
+                    .opacity(0)
                 }
 //                .onTapGesture {
 //                    selectProduct(product: product)

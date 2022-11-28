@@ -31,7 +31,7 @@ struct BasketWithItems: View {
             }
             
             Button {
-                superVM.updateCount(itemModels: itemModels)
+                superVM.addItemsCount(itemModels: itemModels)
                 superVM.ZAKUPKA(items: itemModels)
                 superVM.addBuyStock(itemModels: itemModels, project: superVM.selectedProject)
                 itemsToBasket.removeAll()

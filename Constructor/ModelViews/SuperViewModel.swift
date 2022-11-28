@@ -183,8 +183,8 @@ class SuperViewModel: ObservableObject {
         
     }
     
-    func updateCount(itemModels: [ItemModel]) {
-        itemsData.updateItemCount(itemModels: itemModels)
+    func addItemsCount(itemModels: [ItemModel]) {
+        itemsData.addItemsCount(itemModels: itemModels)
     }
     
     //MARK: Product Functions
