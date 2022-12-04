@@ -43,6 +43,7 @@ struct OrderView: View {
             Button {
                 superVM.PRODAZHA(products: productsInOrder)
                 superVM.addSaleOrder(productModels: productsInOrder, project: superVM.selectedProject)
+                superVM.minusItemsCount(productModels: productsInOrder)
                 dismiss()
             } label: {
                 Text("Save")

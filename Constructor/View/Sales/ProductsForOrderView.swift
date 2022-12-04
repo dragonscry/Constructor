@@ -44,7 +44,7 @@ struct ProductsForOrderView: View {
 extension ProductsForOrderView {
     func productsToProductsModel() {
         for product in superVM.products {
-            productsTemp.append(ProductModel(id: product.productID ?? "", name: product.name ?? "", price: product.price))
+            productsTemp.append(ProductModel(id: product.productID ?? "", name: product.name ?? "", price: product.totalPrice))
         }
     }
     

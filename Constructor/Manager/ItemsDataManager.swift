@@ -95,4 +95,12 @@ class ItemsDataManager: ObservableObject {
         }
         save()
     }
+    
+    func minusItemsCount(itemModels: [ItemModelCount]) {
+        for model in itemModels {
+            let item = items.first {$0.itemID == model.id}
+            item?.storageCount -= model.count
+        }
+        save()
+    }
 }

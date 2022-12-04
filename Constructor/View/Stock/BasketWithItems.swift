@@ -68,3 +68,8 @@ struct ItemModel: Codable, Hashable, Identifiable {
     let price: Double
     var count = "0"
 }
+
+struct ItemModelCount: Codable, Hashable, Identifiable {
+    let id: String
+    var count: Double
+}

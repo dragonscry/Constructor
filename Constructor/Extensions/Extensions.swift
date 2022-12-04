@@ -39,7 +39,7 @@ extension UIApplication {
 extension Double {
     
     func asString2Decimal() -> String {
-        return String(format: "%.2f", self)
+        return String(format: "%.3f", self)
     }
 }
 

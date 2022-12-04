@@ -149,6 +149,28 @@ class SuperViewModel: ObservableObject {
         projectsData.PRODAZHA(products: products, project: projectsData.selectedProject)
     }
     
+    func ProductRealisation(productModels: [ProductModel]) -> [ItemModelCount] {
+        let productsWithCount = productWithCount(productModels: productModels)
+
+        var temp = [ItemModelCount]()
+
+        for (product, count) in productsWithCount {
+            if let itemCounts = product.itemCounts?.allObjects as? [ItemCountEntity] {
+                for itemCount in itemCounts {
+                    if !temp.contains(where: {$0.id == itemCount.idItem}) {
+                        temp.append(ItemModelCount(id: itemCount.idItem ?? "", count: itemCount.count * (Double(count) ?? 0)))
+                    } else {
+                        if let index = temp.firstIndex(where: {$0.id == itemCount.idItem}) {
+                            temp[index].count += itemCount.count * (Double(count) ?? 0)
+                        }
+                    }
+                }
+            }
+        }
+        
+        return temp
+    }
+    
     func saveProject(){
         projectsData.save()
     }
@@ -185,6 +207,10 @@ class SuperViewModel: ObservableObject {
     
     func addItemsCount(itemModels: [ItemModel]) {
         itemsData.addItemsCount(itemModels: itemModels)
+    }
+    
+    func minusItemsCount(productModels: [ProductModel]) {
+        itemsData.minusItemsCount(itemModels: ProductRealisation(productModels: productModels))
     }
     
     //MARK: Product Functions
@@ -243,6 +269,18 @@ class SuperViewModel: ObservableObject {
             projectProducts.contains(product)
         }
         
+    }
+    
+    private func productWithCount(productModels: [ProductModel]) -> [(ProductEntity, String)] {
+        var temp = [(ProductEntity, String)]()
+        for product in products {
+            for productModel in productModels {
+                if product.productID == productModel.id {
+                    temp.append((product, productModel.count))
+                }
+            }
+        }
+        return temp
     }
     
     //MARK: Buy Sale entities
